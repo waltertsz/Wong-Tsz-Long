@@ -1,0 +1,162 @@
+
+
+<meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for("static",filename="css/base.css")}}">
+
+        <!-- icon -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='image/favicon.ico') }}">
+
+    </head>
+
+    <body>
+
+        <!-- Navbar Menu -->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for("index") }}">
+                <img src="{{ url_for("static",filename="image/name.png")}}" alt="logo" style="width:65px;height: 65px;border-radius: 50%;">
+                <strong>Walter's Stationary</strong>
+            </a>
+        
+            
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for("store") }}">Products</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ url_for("about") }}">About Us </a>
+                </li>
+                
+                {% if session['uname'] %}
+                <li class="nav-item act">
+                    <a class="nav-link" href="{{ url_for("logout") }}">Log Out</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">{{ session['uname'] }}</a>
+                    <div class="dropdown-menu" style="background-color:rgba(160, 160, 160, 0.534);">
+                        <a class="dropdown-item" href="{{ url_for("personal") }}" target="_blank">User Setting</a>
+                        <a class="dropdown-item" href="{{ url_for("vieworders") }}" target="_blank">Check Orders</a>
+                    </div>
+                </li>
+                
+                {% else %}
+
+                <li class="nav-item act">
+                    <a class="nav-link" href="{{ url_for("login") }}">Log In</a>
+                </li>
+
+                <li class="nav-item act">
+                    <a class="nav-link" href="{{ url_for("register") }}">Register</a>
+                </li>
+
+                {% endif %}
+
+                </ul>
+
+                <form class="form-inline" action="/search" method="get">
+                    <input class="form-control mr-sm-2" type="search"
+                           placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                    Style="background-color: rgba(0, 0, 0, 0.856)">Search</button>
+                </form>
+            </div>
+            </nav>
+
+{% block head %}
+    <title>store</title>
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/store.css")}}">
+
+{% endblock %}
+
+{% block main %}
+   <div class="content">
+        {% include "flashmsghelper.html" %}
+        <h1 id="productheader">Kaweco pen</h1>
+        <div class="row">
+            {% for kaweco in kaweco %}
+            {% if kaweco.ptype == 'kaweco' %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card mb-4" id="carddes">
+                    <a href="/detail?pid={{kaweco.pid}}">
+                        <div class="inner">
+                            <img class="card-img-top id_{{kaweco.pid}}"
+                            style="background: url(
+                                     'static/image/product/{{kaweco.ptype}}/{{kaweco.plink}}');
+                                     background-repeat:no-repeat;
+                                     background-size: cover; height:400px;width:100% ">
+                        </div>
+                        <div class="card-body" id="carword">
+                            <h5>{{ kaweco.pname }}</h5>
+                            <h4>${{ kaweco.pprice }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <h1 id="productheader">Injector</h1>
+        <div class="row">
+            {% for kaweco in injector %}
+            {% if kaweco.ptype == 'injector' %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card mb-4" id="carddes">
+                    <a href="/detail?pid={{kaweco.pid}}">
+                        <div class="inner">
+                            <img class="card-img-top id_{{kaweco.pid}}"
+                            style="background: url(
+                                     'static/image/product/{{kaweco.ptype}}/{{kaweco.plink}}');
+                                     background-repeat:no-repeat;
+                                     background-size: cover; height:400px;width:100% ">
+                        </div>
+                        <div class="card-body" id="carword">
+                            <h5>{{ kaweco.pname }}</h5>
+                            <h4>${{ kaweco.pprice }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <h1 id="productheader">Ink</h1>
+        <div class="row">
+            {% for kaweco in ink %}
+            {% if kaweco.ptype == 'ink' %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card mb-4" id="carddes">
+                    <a href="/detail?pid={{kaweco.pid}}">
+                        <div class="inner">
+                            <img class="card-img-top id_{{kaweco.pid}}"
+                            style="background: url(
+                                     'static/image/product/{{kaweco.ptype}}/{{kaweco.plink}}');
+                                     background-repeat:no-repeat;
+                                     background-size: cover; height:400px;width:100% ">
+                        </div>
+                        <div class="card-body" id="carword">
+                            <h5>{{ kaweco.pname }}</h5>
+                            <h4>${{ kaweco.pprice }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+   </div>  
+{% endblock %}

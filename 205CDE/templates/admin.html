@@ -1,0 +1,23 @@
+
+
+{% extends "adbase.html" %}
+
+{% block head %}
+    <title>store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/adminlogin.css")}}">
+
+{% endblock %}
+
+{% block main %}
+   <div class="content">
+       <h3>Welcome back! {{ session['adname'] }}</h3>
+        <h3>Please Select The Function in the bar!</h3>
+    </div>
+    
+
+        </div>
+    </div>
+
+
+{% endblock %}

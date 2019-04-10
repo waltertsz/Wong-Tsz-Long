@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/login.css")}}">
+    
+{% endblock %}
+
+{% block main %}
+    <div class="bg">
+        <br><br><br><br><br><br>
+
+        <div class="jumbotron" style="background-color:rgba(0, 0, 0, 0.541);">
+            {% include "flashmsghelper.html" %}
+            <h2 style="text-align: center; color: white;">Login Form</h2>
+                {% from "formhelpers.html" import render_field %}
+                <div>
+                    <form method="POST" action="">
+                        <div class="form-group" style='opacity: 0.9;'>
+                            {{render_field(form.username, class_="form-control")}}
+                        </div>
+                        <div class="form-group" style='opacity: 0.9;'>
+                            {{render_field(form.password, class_="form-control")}}
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Login</button><br><br><br>
+                        <a href="{{ url_for("register") }}">Not a member? Click it!</a><br><br>
+                        <a href="{{ url_for("adminlogin") }}">Admin Login here!</a>
+                    </form>
+                </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+
+{% endblock %}

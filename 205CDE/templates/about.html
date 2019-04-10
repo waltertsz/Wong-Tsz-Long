@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+{% block head %}
+    <title>About Us</title>
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/about.css")}}">
+    
+
+{% endblock %}
+
+{% block main %}
+<div class="bg">
+    <br><br><br><br><br><br><br>
+    <center><h1>Why should you come here?</h1>
+        <br>
+    <h3>Coz you may browse every new things here!<h3> <br> 
+
+
+    <h1>Still looking for what?</h1><br>
+    <br><br><br><br><br>
+    <div class="col-lg-4" >
+        <a href="{{ url_for("store") }}"><button type="button" class="btn btn-success" ><h1>Click to store</h1></button></center></a>
+     
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+
+
+{% endblock %}

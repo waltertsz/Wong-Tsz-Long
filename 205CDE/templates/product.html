@@ -1,0 +1,38 @@
+
+
+{% extends "base.html" %}
+
+{% block head %}
+    <title>store</title>
+    
+{% endblock %}
+
+{% block main %}
+   <div class="content2">
+        <h1 id="productheader"><a href="/kaweco">kaweco</a></h1>
+        <div class="row">
+            {% for kaweco in kaweco %}
+            {% if kaweco.ptype == 'kaweco' %}
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card mb-4" id="carddes">
+                    <a href="/{{kaweco.ptype}}?pid={{kaweco.pid}}">
+                        <div class="inner">
+                            <img class="card-img-top id_{{kaweco.pid}}"
+                            style="background: url(
+                                     'static/image/product/{{kaweco.ptype}}/{{kaweco.pid}}');
+                                     background-repeat:no-repeat;
+                                     background-size: cover; height:200px;width:100% ">
+                        </div>
+                        <div class="card-body" id="carword">
+                            <h5>{{ kaweco.pname }}</h5>
+                            <h4>${{ kaweco.pprice }}</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+   </div>
+
+{% endblock %}
